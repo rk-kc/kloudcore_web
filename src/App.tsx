@@ -72,8 +72,8 @@ function App() {
 	}, [darkMode])
 
 	return (
-		<div className="h-screen bg-white dark:bg-[#000000] flex flex-col overflow-hidden">
-			<div className="flex-1 flex items-center justify-center">
+		<div className="min-h-screen bg-white dark:bg-[#000000] flex flex-col md:overflow-hidden">
+			<div className="flex-1 flex items-center justify-center sm:p-8 md:p-0">
 				{!contentOpen && (
 					<div
 						className="cursor-pointer animate-bounce-slow"
@@ -88,22 +88,22 @@ function App() {
 				)}
 
 				{contentOpen && (
-					<div className="max-w-4xl h-[70vh] text-gray-800 dark:text-gray-200 animate-slide-up">
+					<div className="w-full max-w-4xl max-h-[calc(100vh-100px)] md:h-[70vh] px-4 sm:px-0 text-gray-800 dark:text-gray-200 animate-slide-up">
 						<div className="flex justify-between items-center mb-4">
 							<button
 								onClick={toggleLanguage}
-								className="px-3 py-1 bg-teal-500 hover:bg-teal-600 text-white text-sm rounded transition-colors duration-200"
+								className="px-2 py-1 sm:px-3 bg-teal-500 hover:bg-teal-600 text-white text-xs sm:text-sm rounded transition-colors duration-200"
 							>
 								{isJapanese ? 'EN' : '日本語'}
 							</button>
 							<button
-								className="text-2xl hover:text-gray-600 dark:hover:text-gray-400 transition-all duration-200 hover:rotate-90"
+								className="text-xl sm:text-2xl hover:text-gray-600 dark:hover:text-gray-400 transition-all duration-200 hover:rotate-90"
 								onClick={handleCloseClick}
 							>
 								×
 							</button>
 						</div>
-						<div className="grid grid-cols-2 gap-8 text-base leading-relaxed text-gray-700 dark:text-gray-300">
+						<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 text-sm sm:text-base leading-relaxed text-gray-700 dark:text-gray-300 pb-16 md:pb-4">
 							<div className="space-y-4 animate-fade-in-left">
 								<p>
 									🌩 <strong className="text-2xl">{t.welcome}</strong>
