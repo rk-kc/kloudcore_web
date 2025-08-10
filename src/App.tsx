@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Footer } from './components/Footer'
+import { OurApps } from './components/OurApps'
 
 function App() {
 	const [darkMode, setDarkMode] = useState(() => {
@@ -7,6 +8,7 @@ function App() {
 	})
 
 	const [contentOpen, setContentOpen] = useState(false)
+	const [appsOpen, setAppsOpen] = useState(false)
 	const [isJapanese, setIsJapanese] = useState(false)
 
 	const handleLogoClick = (e: React.MouseEvent) => {
@@ -39,7 +41,9 @@ function App() {
 			contact: 'Get in Touch!',
 			email: 'Your email',
 			message: 'Your message',
-			send: 'Send Message 🚀'
+			send: 'Send Message 🚀',
+			aboutus: 'About Us',
+			ourapps: 'Our Apps'
 		},
 		ja: {
 			welcome: '🌩 Kloudcoreへようこそ',
@@ -56,7 +60,9 @@ function App() {
 			contact: 'お問い合わせ！',
 			email: 'メールアドレス',
 			message: 'メッセージ',
-			send: 'メッセージを送信 🚀'
+			send: 'メッセージを送信 🚀',
+			aboutus: '私たちについて',
+			ourapps: '私たちのアプリ'
 		}
 	}
 
@@ -74,28 +80,58 @@ function App() {
 	return (
 		<div className="min-h-screen bg-white dark:bg-[#000000] flex flex-col md:overflow-hidden">
 			<div className="flex-1 flex items-center justify-center sm:p-8 md:p-0">
-				{!contentOpen && (
-					<div
-						className="cursor-pointer animate-bounce-slow"
-						onClick={handleLogoClick}
-					>
-						<img
-							src={darkMode ? 'logo-dark.gif' : 'logo.gif'}
-							alt="Kloudcore Logo"
-							className="max-w-xs transition-all duration-500 hover:scale-110 hover:rotate-12 rounded-lg will-change-transform"
-						/>
+				{!contentOpen && !appsOpen && (
+					<div className="relative group">
+						<div className="cursor-pointer animate-bounce-slow">
+							<img
+								src={darkMode ? 'logo-dark.gif' : 'logo.gif'}
+								alt="Kloudcore Logo"
+								className="max-w-xs transition-all duration-500 hover:scale-110 hover:rotate-12 rounded-lg will-change-transform"
+							/>
+
+							{/* Hover Menu - Left and Right */}
+							<div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto z-10">
+								{/* Invisible hover bridge - Left */}
+								<div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-16 h-20 -mr-16"></div>
+
+								{/* About Us - Left Side */}
+								<div className="absolute top-1/2 right-full transform -translate-y-1/2 mr-16">
+									<div className="relative">
+										<button
+											className="cloud-menu shadow-xl hover:shadow-2xl transition-shadow duration-200"
+											onClick={handleLogoClick}
+										>
+											<div className="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-200 text-lg">
+												{t.aboutus}
+											</div>
+										</button>
+									</div>
+								</div>
+
+								{/* Invisible hover bridge - Right */}
+								<div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-16 h-20 -ml-16"></div>
+
+								{/* Apps - Right Side */}
+								<div className="absolute top-1/2 left-full transform -translate-y-1/2 ml-16">
+									<div className="relative">
+										<button
+											className="cloud-menu shadow-xl hover:shadow-2xl transition-shadow duration-200"
+											onClick={() => setAppsOpen(true)}
+										>
+											<div className="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors duration-200 text-lg">
+												{t.ourapps}
+											</div>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				)}
 
 				{contentOpen && (
 					<div className="w-full max-w-4xl max-h-[calc(100vh-100px)] md:h-[70vh] px-4 sm:px-0 text-gray-800 dark:text-gray-200 animate-slide-up">
 						<div className="flex justify-between items-center mb-4">
-							<button
-								onClick={toggleLanguage}
-								className="px-2 py-1 sm:px-3 bg-teal-500 hover:bg-teal-600 text-white text-xs sm:text-sm rounded transition-colors duration-200"
-							>
-								{isJapanese ? 'EN' : '日本語'}
-							</button>
 							<button
 								className="text-xl sm:text-2xl hover:text-gray-600 dark:hover:text-gray-400 transition-all duration-200 hover:rotate-90"
 								onClick={handleCloseClick}
@@ -154,9 +190,18 @@ function App() {
 						</div>
 					</div>
 				)}
+
+				{appsOpen && (
+					<OurApps onClose={() => setAppsOpen(false)} isJapanese={isJapanese} />
+				)}
 			</div>
 
-			<Footer darkMode={darkMode} onToggleDarkMode={toggleDarkMode} />
+			<Footer
+				darkMode={darkMode}
+				onToggleDarkMode={toggleDarkMode}
+				isJapanese={isJapanese}
+				onToggleLanguage={toggleLanguage}
+			/>
 		</div>
 	)
 }

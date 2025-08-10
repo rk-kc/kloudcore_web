@@ -38,3 +38,21 @@
   animation: fade-in-right 0.8s ease-out 0.4s both;
 }
 
+.cloud-menu {
+  background: #e0f2fe;
+  border: 2px solid #0891b2;
+  border-radius: 50%;
+  padding: 12px 20px;
+  min-width: 120px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.dark .cloud-menu {
+  background: #1e293b;
+  border-color: #0891b2;
+  border: 2px solid #0891b2;
+}
