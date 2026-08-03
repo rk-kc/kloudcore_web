@@ -1,10 +1,72 @@
 @import "tailwindcss";
-@config "../tailwind.config.js";
+@import "./fonts.css";
 
+@theme {
+  /* Retro-Pulse brand colors */
+  --color-off-black: #1a1a1c;
+  --color-paper-cream: #f9f4e8;
+  --color-vintage-green: #2e5d4b;
+  --color-electric-orange: #ff705c;
+  --color-retro-yellow: #ffee52;
 
-@keyframes bounce-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  /* semantic tokens (light defaults; dark overrides applied via .dark below) */
+  --color-background: #fef9ed;
+  --color-on-background: #1d1c15;
+  --color-surface: #fef9ed;
+  --color-surface-container: #f2ede2;
+  --color-surface-container-high: #ede8dc;
+  --color-on-surface: #1d1c15;
+  --color-on-surface-variant: #58413d;
+  --color-inverse-surface: #323029;
+  --color-inverse-on-surface: #f5f0e4;
+  --color-outline: #8c716c;
+  --color-primary: #ab3325;
+  --color-on-primary: #ffffff;
+  --color-primary-fixed-dim: #ffb4a8;
+  --color-secondary: #386755;
+  --color-on-secondary: #ffffff;
+  --color-secondary-fixed-dim: #9fd1ba;
+
+  /* typography */
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-body: "Work Sans", sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+  --text-display-lg: 72px;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.04em;
+  --text-display-lg--font-weight: 800;
+
+  --text-headline-lg: 48px;
+  --text-headline-lg--line-height: 1.2;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 700;
+
+  --text-headline-md: 32px;
+  --text-headline-md--line-height: 1.3;
+  --text-headline-md--font-weight: 600;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.5;
+
+  --text-label-mono: 14px;
+  --text-label-mono--line-height: 1.4;
+  --text-label-mono--letter-spacing: 0.05em;
+
+  --text-button: 18px;
+  --text-button--line-height: 1;
+  --text-button--letter-spacing: 0.02em;
+  --text-button--font-weight: 700;
+
+  /* shape / spacing */
+  --radius-DEFAULT: 0.5rem;
+  --spacing-gutter: 24px;
+  --spacing-margin-sm: 16px;
+  --spacing-margin-md: 32px;
+  --spacing-margin-lg: 64px;
 }
 
 @keyframes slide-up {
@@ -22,8 +84,9 @@
   to { opacity: 1; transform: translateX(0); }
 }
 
-.animate-bounce-slow {
-  animation: bounce-slow 3s ease-in-out infinite;
+@keyframes infinite-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 .animate-slide-up {
@@ -38,21 +101,67 @@
   animation: fade-in-right 0.8s ease-out 0.4s both;
 }
 
-.cloud-menu {
-  background: #e0f2fe;
-  border: 2px solid #0891b2;
-  border-radius: 50%;
-  padding: 12px 20px;
-  min-width: 120px;
-  min-height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+.animate-infinite-scroll {
+  animation: infinite-scroll linear infinite;
 }
 
-.dark .cloud-menu {
-  background: #1e293b;
-  border-color: #0891b2;
-  border: 2px solid #0891b2;
+.brutalist-shadow {
+  box-shadow: 4px 4px 0 0 var(--color-off-black);
+}
+
+.brutalist-shadow-lg {
+  box-shadow: 8px 8px 0 0 var(--color-off-black);
+}
+
+.hover-lift {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hover-lift:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0 0 var(--color-off-black);
+}
+
+.active-press {
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.active-press:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--color-off-black);
+}
+
+.active-press:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 0 var(--color-off-black);
+}
+
+.halftone-bg {
+  background-image: radial-gradient(var(--color-off-black) 1px, transparent 0);
+  background-size: 20px 20px;
+  opacity: 0.05;
+}
+
+.dark .brutalist-shadow {
+  box-shadow: 4px 4px 0 0 var(--color-paper-cream);
+}
+
+.dark .brutalist-shadow-lg {
+  box-shadow: 8px 8px 0 0 var(--color-paper-cream);
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 10px 10px 0 0 var(--color-paper-cream);
+}
+
+.dark .active-press:hover {
+  box-shadow: 2px 2px 0 0 var(--color-paper-cream);
+}
+
+.dark .active-press:active {
+  box-shadow: 0 0 0 0 var(--color-paper-cream);
+}
+
+.dark .halftone-bg {
+  background-image: radial-gradient(var(--color-paper-cream) 1px, transparent 0);
 }

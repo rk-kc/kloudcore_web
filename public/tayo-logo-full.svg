@@ -1,0 +1,6 @@
+<svg width="350" height="100" viewBox="0 0 350 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="32" cy="50" r="24" fill="#546B41" opacity="0.85" />
+  <circle cx="56" cy="50" r="24" fill="#FF8C42" opacity="0.85" />
+  <circle cx="44" cy="50" r="10" fill="#546B41" />
+  <text x="95" y="62" font-family="'Libre Baskerville', serif" font-size="48" font-weight="400" fill="#546B41" letter-spacing="0.02em">Tayo</text>
+</svg>
