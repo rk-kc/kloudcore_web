@@ -8,7 +8,7 @@ export const UtilityBar = memo(function UtilityBar() {
 	const { locale, toggleLanguage } = useLanguage()
 
 	return (
-		<div className="fixed bottom-4 right-4 z-50 flex items-center gap-2">
+		<div className="fixed top-24 right-4 sm:top-auto sm:bottom-4 z-50 flex items-center gap-2">
 			<button
 				onClick={toggleLanguage}
 				className="border-2 border-off-black dark:border-paper-cream/70 bg-retro-yellow px-3 py-1.5 font-mono text-xs uppercase text-off-black brutalist-shadow active-press"
